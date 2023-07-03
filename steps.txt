@@ -1,0 +1,5 @@
+STEPS FOR START PROJECT :
+
+   1- install files react project :
+      npx create-react-app ./
+   2- npm install --legacy-per-deps     - command for install the packeges that i copy the package.json file   
