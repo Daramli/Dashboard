@@ -3,14 +3,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { FiSettings } from "react-icons/fi";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import { Navbar , Footer , Sidebar , ThemeSettings } from "./components";
-import { Ecommerce , Orders , Calendar , Employees , Stacked , Pyramid , Customers , Kanban , Line , Area , Bar , Pie , Financial , ColorPicker , ColorMapping , Editor } from "./pages"
+import { Ecommerce , Orders , Calendar , Employes , Stacked , Pyramid , Customers , Kanban , Line , Area , Bar , Pie , Financial , ColorPicker , ColorMapping , Editor } from "./pages"
 import { useStateContext } from "./contexts/ContextProvider";
 import "./app.css";
 
 const App = () => {
-  const { activeMenu } = useStateContext();
+  const { activeMenu , themeSettings , setThemeSettings , currentColor , currentMode } = useStateContext();
   return (
-    <div>
+    <div className={currentMode === "Dark" ? "dark" : ""}>
       <BrowserRouter>
         <div className="flex relative dark:bg-main-dark-bg">
           <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
@@ -18,7 +18,8 @@ const App = () => {
               <button
                 type="button"
                 className="text-3xl p-3 hover:drop-shadow-xl hover:bg-light-gray text-white"
-                style={{ background: "blue", borderRadius: "50%" }}
+                style={{ background: currentColor, borderRadius: "50%" }}
+                onClick={() => setThemeSettings(true)}
               >
                 <FiSettings />
               </button>
@@ -34,7 +35,7 @@ const App = () => {
             </div>
           )}
           <div
-            className={`dark:bg-main-bg bg-main-bg min-h-screen w-full ${
+            className={`dark:bg-main-dark-bg bg-main-bg min-h-screen w-full ${
               activeMenu ? "md:ml-72" : "flex-2"
             }`}
           >
@@ -43,6 +44,7 @@ const App = () => {
             </div>
          
           <div>
+         { themeSettings &&  <ThemeSettings /> }
             <Routes>
               {/* DASHBOARD */}
               <Route path="/" element={<Ecommerce />} />
@@ -50,13 +52,13 @@ const App = () => {
 
               {/* PAGES */}
               <Route path="/orders" element={<Orders />} />
-              <Route path="/employes" element={<Employees />} />
+              <Route path="/employees" element={<Employes />} />
               <Route path="/customers" element={<Customers />} />
 
               {/* APPS */}
               <Route path="/kanban" element={<Kanban />} />
               <Route path="/editor" element={<Editor />} />
-              <Route path="/calender" element={<Calendar />} />
+              <Route path="/calendar" element={<Calendar />} />
               <Route path="/color-picker" element={<ColorPicker />} />
 
               {/* CHARTS */}

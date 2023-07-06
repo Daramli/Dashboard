@@ -6,6 +6,7 @@ import { earningData , SparklineAreaData , ecomPieChartData } from '../data/dumm
 import { useStateContext } from '../contexts/ContextProvider';
 
 const Ecommerce = () => {
+  const { currentColor } = useStateContext();
   return (
     <div className="mt-12">
       <div className="flex flex-wrap lg:flex-nowrap justify-center">
@@ -20,7 +21,7 @@ const Ecommerce = () => {
             <div className="mt-6">
               <Button
                color="white"
-               bgColor="blue"
+               bgColor={currentColor}
                text="Download"
                borderRadius="10px"
                size="md"
@@ -47,7 +48,7 @@ const Ecommerce = () => {
       </div>
 
       <div className="flex gap-10 flex-wrap justify-center">
-        <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg m-3 rounded-2xl md:w-780">
+        <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg m-3 rounded-2xl p-4 md:w-780">
           <div className="flex justify-between">
             <p className="font-semibold text-xl">Revenue Updates</p>
             <div className="flex items-center gap-4">
@@ -77,14 +78,14 @@ const Ecommerce = () => {
                 <p className="text-gray-500 mt-1">Expense</p>
               </div>
               <div className="mt-5">
-                <SparkLine currentColor="blue" id="line-sparkline" type="line"
+                <SparkLine currentColor={currentColor} id="line-sparkline" type="line"
                  height="80px" width="250px"
-                 data={SparklineAreaData} color="blue" />
+                 data={SparklineAreaData} color={currentColor} />
               </div>
               <div className="mt-10">
                 <Button
                  color="white"
-                 bgColor="blue"
+                 bgColor={currentColor}
                  text="Download Report"
                  borderRadius="10px"
                 />
